@@ -32,4 +32,4 @@ Nech uživatele vybrat jeden. Pak si o něm popovídejte přes skill "vyzpovidej
 
 ## 4. Po opravě
 
-`npm run verify` musí zůstat zelený. Když úklid změnil chování, nebyl to úklid.
+`verify` musí zůstat zelený. Když úklid změnil chování, nebyl to úklid.

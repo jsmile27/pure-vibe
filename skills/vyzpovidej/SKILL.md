@@ -13,7 +13,11 @@ U zpovídání na jednu věc jdi do detailu, který by u celého produktu nedáv
 
 Pracuj v **kolech**. **Hranice** je každé rozhodnutí, jehož předpoklady už jsou vyřešené: otázky, na které se můžeš zeptat teď, aniž bys hádal odpovědi, které jsi ještě neslyšel. Zeptej se na celou hranici v jednom kole, nejvýš však na čtyři otázky. Očísluj je, ke každé přidej doporučenou odpověď, a počkej.
 
-Formát každé otázky:
+Když máš nástroj na otázky s výběrem a všechny otázky kola jdou nabídnout jako volby, polož kolo **jedním voláním**. Jak se v něm otázka píše, drží skill "preklad-rozhodnuti". Jinak polož celé kolo textem ve formátu níž.
+
+Když by otázka byla jasnější ukázaná než popsaná, zavolej skill "ukaz". Rozhodne, jestli ji ukázat v okně prohlížeče, a okno uživateli nabídne.
+
+Formát otázky textem:
 
 ```
 ❓ **Q1 - <název>**: <otázka, klidně na víc odstavců, včetně variant>

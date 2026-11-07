@@ -62,13 +62,13 @@ Nemusíš si to pamatovat. Každý skill ti na konci řekne, co je další krok,
 
 ## Dvě rychlosti ověřování
 
-Během psaní běží `npm run check`: kontrola typů a rychlé testy, otázka sekund. Na konci řezu běží `npm run verify`: úplně všechno včetně prohlížeče.
+Během psaní běží `check`: kontrola typů a rychlé testy, otázka sekund. Na konci řezu běží `verify`: úplně všechno včetně prohlížeče. V projektu na Node to jsou `npm run check` a `npm run verify`, v jiném stacku jejich obdoba zapsaná v `AGENTS.md`.
 
-Kdyby se po každé změně pouštělo všechno, čekal bys tak dlouho, že bys to začal obcházet. Proto ty dva příkazy. **Řez je hotový až po zeleném `npm run verify`**, `check` ho nenahradí.
+Kdyby se po každé změně pouštělo všechno, čekal bys tak dlouho, že bys to začal obcházet. Proto ty dva příkazy. **Řez je hotový až po zeleném `verify`**, `check` ho nenahradí.
 
 ## Technologický stack
 
-Sada je postavená nad jedním stackem a nesnaží se být univerzální, právě kvůli odstínění uživatele od komplexity.
+Výchozí stack je v tabulce níž a pro něj má sada sepsané pasti a podrobný postup zakládání. Když produkt potřebuje něco jiného (aplikaci do obchodů s aplikacemi, Python, napojení na stávající systém), nebo už projekt na něčem jiném stojí, skilly fungují taky: obecná pravidla platí dál, podrobnosti agent dohledá v dokumentaci a nové pasti zapisuje do `STACK.md` v projektu.
 
 | | |
 |---|---|
@@ -108,12 +108,13 @@ Po těchhle sáhne agent sám, když je potřeba. Napsat je můžeš taky.
 | `/vibe:navrh-kodu` | Zásady pro návrh kódu, který půjde udržovat. |
 | `/vibe:slovnik` | Udržuje `KONTEXT.md` a deník rozhodnutí ve složce `rozhodnuti/`. |
 | `/vibe:stack` | Jak se věci dělají v tomhle stacku a kde jsou pasti. |
+| `/vibe:ukaz` | Během rozhovoru ukáže v okně prohlížeče diagram nebo varianty obrazovky, ze kterých vybereš kliknutím. |
 
 `cesky-prosim` je ten, který budeš potřebovat nejdřív. Nemusíš si ho pamatovat: stačí napsat, že nerozumíš, a agent po něm sáhne sám.
 
 ## Poděkování
 
-Stavba a členění vychází ze [Skills For Real Engineers](https://github.com/mattpocock/skills) od Matta Pococka (MIT). Tahle sada je jejich překlad a ohnutí pro lidi, kteří nejsou programátoři.
+Stavba a členění vychází ze [Skills For Real Engineers](https://github.com/mattpocock/skills) od Matta Pococka (MIT). Okno s náhledy (`ukaz`) je převzaté a počeštěné ze [Superpowers](https://github.com/obra/superpowers) od Jesseho Vincenta (MIT). Tahle sada je jejich překlad a ohnutí pro lidi, kteří nejsou programátoři.
 
 ## Licence
 

@@ -28,7 +28,7 @@ Ptej se přes skill "preklad-rozhodnuti". Nikdy technicky.
 
 Pro každý typ záznamu napiš test, který ověří, že **uživatel B nedosáhne na data uživatele A**: nepřečte je, nezmění, nesmaže, a to ani dotazem mimo aplikaci.
 
-Tyhle testy patří do `npm run verify` a běží pořád. Bez nich se díra vrátí při první další funkci.
+Tyhle testy patří do `verify` a běží pořád. Bez nich se díra vrátí při první další funkci.
 
 ## 4. Dej uživateli ruční zkoušku
 

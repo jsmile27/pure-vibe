@@ -19,9 +19,15 @@ Když v těle otázky potřebuješ odborný pojem, který si uživatel sám nede
 
 Přeložená otázka má vždycky dvě až tři konkrétní varianty popsané tím, co se stane, a jedno doporučení.
 
+## Jak otázku položit
+
+Když máš nástroj na otázky s výběrem odpovědí (v Claude Code `AskUserQuestion`), polož otázku jím, ať uživatel jen klikne. Do jednoho volání se vejdou jedna až čtyři otázky, každá se dvěma až čtyřmi volbami a štítkem nejvýš o dvanácti znacích. Doporučená varianta jde první a její název končí "(doporučeno)". Popis každé varianty je jedna věta o tom, co se stane. Vlastní odpověď může uživatel napsat vždycky, jako volbu ji nepřidávej.
+
+Textem se ptej, když takový nástroj nemáš, nebo když odpověď nejde nabídnout jako volby: seznam, popis vlastními slovy, číslo.
+
 ## Vzdělávací poznámka
 
-Za doporučení připoj řádek `📘` s tím, jak se věci odborně říká. Jedna až dvě věty, nikdy v těle otázky, nikdy instrukce. Je to bonus, ne součást rozhodování. Uživatel se má postupně naučit slovník, ne ho potřebovat k odpovědi.
+Za doporučení připoj řádek `📘` s tím, jak se věci odborně říká. U otázky v nástroji s výběrem ho napiš do zprávy před ní. Jedna až dvě věty, nikdy v těle otázky, nikdy instrukce. Je to bonus, ne součást rozhodování. Uživatel se má postupně naučit slovník, ne ho potřebovat k odpovědi.
 
 ## Na tohle se zeptej vždycky
 
