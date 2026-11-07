@@ -9,6 +9,8 @@ Test existuje proto, aby appku ověřil **agent sám, bez člověka**. Když ov�
 
 Dobrý test ověřuje **chování zvenčí**, ne vnitřek. Čte se jako věta ze zadání: "přihlášený zákazník vidí jen svoje objednávky". Kód uvnitř se může celý přepsat a test dál platí.
 
+Než test napíšeš, pojmenuj chybu v aplikaci, která ho shodí: chybějící kontrola, špatná podmínka, zapomenutý zápis. Když žádnou pojmenovat neumíš, test by nic nehlídal. Vyber jiné chování, které se dá rozbít.
+
 Názvy testů piš anglicky, stejně jako kód. Dokumenty a rozhovor s uživatelem jsou česky, kód ne.
 
 ## Čtyři vrstvy
@@ -37,7 +39,17 @@ Kdyby se po každé změně pouštělo všechno včetně prohlížeče, čekán�
 
 Zelený `check` **není ověření**. Řez je hotový až po zeleném `verify`, a ten se dokládá vypsaným výstupem. Skill "zkontroluj" pouští vždycky `verify`, nikdy `check`.
 
+Výstup platí jen pro stav, na kterém běžel. Když po něm změníš kód aplikace, testy nebo migrace, pusť `verify` znovu, než řekneš hotovo.
+
 Když vrstvy 2 a 3 narostou tak, že `check` přestane být otázkou sekund, pouštěj v něm jen testy dotčené změnou a celou sadu nech na `verify`.
+
+## Červená a zelená
+
+Nový test musí nejdřív **spadnout, a to ze správného důvodu**: protože chování v aplikaci chybí, ne kvůli překlepu, chybějícímu importu nebo rozbité přípravě dat. Když projde hned, buď to chování už existuje a platí další odstavec, nebo test nic neověřuje a je potřeba ho přepsat.
+
+Když kód vznikl dřív než test, ověř, že test umí spadnout. U kódu aplikace ten kus dočasně vyřaď editací, třeba zakomentováním, viz test spadnout a kód zase vrať. Pravidla přístupu v databázi nevyřazuj nikdy, tabulka by zůstala otevřená. Tam dej v testu útočníkovi dočasně servisního klienta, na kterého pravidla neplatí: test musí spadnout. Pak to v testu vrať.
+
+Červený test se opravuje **v kódu**. Test měň jen tehdy, když je špatně on sám, a uživateli pak jednou větou řekni, co ověřoval dřív a co ověřuje teď. Zmírnit podmínku, test přeskočit nebo ho smazat, jen aby sada zezelenala, znamená schovat díru, ne ji opravit.
 
 ## Izolace testovacích dat
 
