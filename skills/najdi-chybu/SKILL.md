@@ -34,7 +34,7 @@ Pak škrtej: vstupy, kroky, nastavení, data. **Po jednom** a po každém škrtn
 
 ## Fáze 3: Tři až pět dohadů
 
-Vymysli **tři až pět** možných příčin, seřazených, **než začneš kteroukoli zkoušet**. Jeden dohad tě přilepí na první nápad.
+Vymysli **tři až pět** možných příčin, seřazených, **než začneš kteroukoli zkoušet**. Jeden dohad tě přilepí na první nápad. Ber je z toho, co ukázala smyčka, a z toho, co se změnilo od chvíle, kdy to naposledy fungovalo: commity, nové balíčky, nastavení, migrace.
 
 Každý musí jít vyvrátit: "Když je příčina X, tak po změně Y chyba zmizí."
 
@@ -42,10 +42,22 @@ Když nedokážeš říct, co ta příčina předpovídá, není to dohad, je to
 
 Seznam ukaž uživateli. Často to přeskládá jednou větou ("tohle jsme minulý týden nasazovali"). Neblokuj se tím, když není u počítače.
 
+Dohady zkoušej **po jednom, každý jednou změnou**. Změnu, která dohad nepotvrdila, vrať, než zkusíš další: editací, jen tu jednu, protože kód kolem bývá rozdělaný a necommitnutý. Pokus, který už prošel do databáze, vrať novou migrací. Ze dvou změn naráz nepoznáš, která pomohla, a nepovedené pokusy, které v kódu zůstanou, vyrábějí další chyby.
+
+Fáze 3 je hotová, když smyčka potvrdila jeden dohad. Když padnou všechny, vymysli další kolo z toho, co ukázaly.
+
 ## Fáze 4: Oprav a zamkni
 
 Nejdřív test, který chybu chytá, pak oprava. Uvidíš test spadnout, opravíš, uvidíš ho projít, a nakonec pustíš původní smyčku na celém neošetřeném případu.
 
+Oprav tam, kde chyba **vzniká**. Od místa, kde se projevila, jdi proti proudu, odkud špatná hodnota nebo stav přišly, dokud nenajdeš, kde vznikly. Záplata v místě pádu nechá ostatní cesty ke stejné chybě otevřené.
+
 Když chybu nejde rozumně zamknout testem, **je to samo o sobě nález**. Řekni to a doporuč uživateli `/vibe:uklid`.
 
 Na konec ukliď: pryč s dočasným vypisováním, pryč s pokusnými soubory, a do popisu commitu napiš jednou větou, co bylo skutečnou příčinou.
+
+## Když tři opravy nepomohly
+
+Počítej jen opravy z fáze 4 tohoto běhu. Tři nepovedené opravy znamenají, že chyba je v tom, jak je ta část postavená, ne v detailu. Poznáš to i podle toho, že každá oprava odkryje problém o kus vedle.
+
+Po třetí nepovedené opravě se zastav, vypiš uživateli, co jsi zkusil a co to ukázalo, a zeptej se, jestli tu část nepostavit jinak. Otázku prožeň skillem "preklad-rozhodnuti". Další opravu dělej, až se domluvíte. Když se shodnete na přestavbě, řekni, že další krok je `/vibe:vyzpovidej` na tu část.

@@ -18,7 +18,12 @@ Vypiš tyhle řezy uživateli **zvlášť** a řekni, proč tam jsou: nechtěl j
 - Řez se vejde do jednoho sezení s agentem. Když je větší, rozsekni ho.
 - Řezy mají **pořadí**. Neřeš složité závislosti, stačí, že to jde odshora dolů a každý řez staví na hotových.
 - Ke každému řezu, který přidává nová data, patří **test oprávnění**. Není to zvláštní řez, je to jeho součást.
+- Mezi podmínkami "Hotovo, když" je aspoň jedna na to, co se stane, **když to nejde podle plánu**: prázdný seznam, neplatný vstup, výpadek spojení, dvojí odeslání. Co se má stát, ber ze zadání. Když o tom mlčí a jde o peníze nebo data, zeptej se přes skill "preklad-rozhodnuti" a odpověď doplň do zadání. Jinak rozhodni sám.
 - Když je potřeba nejdřív něco přerovnat, aby šla práce udělat snadno, dej to jako první řez.
+
+## Zkontroluj, že nic nevypadlo
+
+Projdi zadání **bod po bodu**. Ke každému bodu z "Co má aplikace umět" a ke každé větě z "Jak poznáme, že to funguje" musí patřit řez; u zadání z rozhovoru ke každé věci, na které jste se shodli. Co žádný řez nepokrývá, doplň do řezu, kam věcně patří. Když to podle tebe do téhle práce nepatří vůbec, řekni to uživateli při ukazování řezů, a když souhlasí, přesuň to v zadání do "Co do toho nepatří".
 
 ## Ukaž to uživateli
 
