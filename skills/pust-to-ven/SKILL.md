@@ -50,6 +50,6 @@ Co sbíráš, kde to leží, jak dlouho a kdo se k tomu dostane. Když jsou uži
 
 ## Na konec
 
-`npm run verify` naposledy, se skutečným výstupem. Pak nasaď a **proklikej ostrou verzi**, ne jen tu svoji.
+`verify` naposledy, se skutečným výstupem. Pak nasaď a **proklikej ostrou verzi**, ne jen tu svoji.
 
 Napiš uživateli tři řádky: co je nasazené, co si má sám ohlídat první týden, a kolik ho to měsíčně stojí.

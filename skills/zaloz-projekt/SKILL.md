@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 Spouští se jednou za projekt. Funguje na prázdné složce i na aplikaci, která už existuje.
 
-Nejdřív zjisti fakta sám: co ve složce je, jestli je to git repozitář, jestli existuje `package.json`, jaká je verze Node, jaké služby jsou napojené, jestli je nainstalované `gh` a jestli je uživatel přihlášený. Na nic z toho se neptej.
+Nejdřív zjisti fakta sám: co ve složce je, jestli je to git repozitář, na čem projekt stojí (`package.json`, `pyproject.toml`, `composer.json` a podobně) a v jakých verzích, jaké služby jsou napojené, jestli je nainstalované `gh` a jestli je uživatel přihlášený. Na nic z toho se neptej.
 
 ## 1. Vyzpovídej se na záměr
 
@@ -29,6 +29,10 @@ Neptej se. Rozhodni a jednou větou zmiň důsledek.
 
 Výchozí volba: **Next.js, Supabase, Vercel, Playwright na prohlížeč, Vitest na zbytek.** Když v projektu už něco běží, respektuj to, co tam je, a neměň to.
 
+Jiný stack vyber, když ho uživatel sám chce, nebo když produkt potřebuje něco, co výchozí volba neumí: aplikaci v obchodech s aplikacemi, výpočty nebo data v Pythonu, napojení na systém, který už uživatel má. Vyber to, co se pro takovou věc běžně používá a má dobrou dokumentaci.
+
+Stack zapiš do `rozhodnuti/` a do sekce Stack v `AGENTS.md`. Skill "stack" podle ní pozná, které pasti platí.
+
 ## 3. Založ paměť projektu
 
 - `PRODUKT.md`, **krátký**, na jednu obrazovku: co to je a pro koho (dva odstavce), **Co bude umět** (číslovaný seznam věcí z rozhovoru, v pořadí, jednou větou každá), **Co do toho nepatří** (co uživatel vědomě odmítl), a věta, že detail každé věci vzniká až v jejím zadání a to, co se těžko vrací, je v `rozhodnuti/`. Není to zadání a nepíše se do něj, jak se věci chovají.
@@ -36,9 +40,9 @@ Výchozí volba: **Next.js, Supabase, Vercel, Playwright na prohlížeč, Vitest
 - `rozhodnuti/` s prvním zápisem o zvoleném základu.
 - `.ukoly/`, nebo nic, když si uživatel vybral GitHub. Do složky dej `README.md` s pravidly z odstavce níž a **jeden soubor na každou věc ze seznamu "Co bude umět"**: název `napad-<slug>.md`, uvnitř jedna dvě věty a řádek "Dospecifikuje `/vibe:vyzpovidej`". Uživatel tak od první minuty vidí, co je před ním, a nic z rozhovoru neleží jen v chatu.
 - `prototypy/` a vyřaď ji z buildu, kontroly typů i testů. Je jen pro `/vibe:prototyp`.
-- `scripts/screenshot.mjs` zkopíruj ze souboru `screenshot.mjs` ve složce tohohle skillu a přidej příkaz `npm run screenshot`. Pouští ho `postav`, když se dívá na hotovou obrazovku. Složku `screenshots/` dej do `.gitignore`.
-- `AGENTS.md`, **krátký**, na jednu obrazovku. Patří do něj výslovná instrukce přečíst si `KONTEXT.md` kvůli slovníku a `rozhodnuti/` kvůli tomu, co už je rozhodnuté, výpis příkazů projektu s jednou větou u každého, k čemu je, pravidlo, že se hotovo dokládá výstupem, ne tvrzením, a pravidlo, že popis commitu je jedna věta česky. Ze zvyklostí sem piš jen ty, které se z projektu nedají vyčíst: kam se zakládá nový kód a podle čeho se věci jmenují. Co ve složkách je, si agent přečte sám, výpis složek sem nepatří.
-- `CLAUDE.md`, který jen odkáže na `AGENTS.md`. Dva soubory se stejným obsahem se za měsíc rozejdou a jeden z nich začne lhát.
+- U webové aplikace zkopíruj `scripts/screenshot.mjs` ze souboru `screenshot.mjs` ve složce tohohle skillu a přidej příkaz `screenshot` (v projektu na Node `npm run screenshot`). Pouští ho `postav`, když se dívá na hotovou obrazovku. Potřebuje Node a Playwright, i když zbytek aplikace stojí na něčem jiném. Když aplikace neběží na `localhost:3000`, dej do příkazu `--base <adresa>`. Složku `screenshots/` dej do `.gitignore`. U aplikace bez webového rozhraní zapiš do `AGENTS.md`, jak se dá hotová obrazovka ukázat, nebo že nijak.
+- `AGENTS.md`, **krátký**, na jednu obrazovku. Patří do něj výslovná instrukce přečíst si `KONTEXT.md` kvůli slovníku a `rozhodnuti/` kvůli tomu, co už je rozhodnuté, sekce **Stack** (na čem projekt stojí a přesné znění příkazů `check`, `verify` a `screenshot`), výpis ostatních příkazů projektu s jednou větou u každého, k čemu je, pravidlo, že se hotovo dokládá výstupem, ne tvrzením, a pravidlo, že popis commitu je jedna věta česky. Ze zvyklostí sem piš jen ty, které se z projektu nedají vyčíst: kam se zakládá nový kód a podle čeho se věci jmenují. Co ve složkách je, si agent přečte sám, výpis složek sem nepatří.
+- `CLAUDE.md`, ve kterém je jen řádek `@AGENTS.md`. Claude Code tak `AGENTS.md` načte sám a ostatní skilly se na jeho sekci Stack můžou spolehnout. Dva soubory se stejným obsahem se za měsíc rozejdou a jeden z nich začne lhát.
 
 Pravidla složky `.ukoly/`, která patří do jejího `README.md`: `napad-<slug>.md` je věc, která se ještě neprobírala. Jakmile se na ni dojde, `/vibe:zadani` z ní udělá složku `<slug>/` se souborem `zadani.md`, `/vibe:rozsekej` do ní přidá řezy `01-*.md`, `02-*.md`, a nápad smaže. `/vibe:postav` řezy uzavírá a hotovou složku přesune do `hotovo/`. Výpis `.ukoly/` je tak seznam toho, co je před námi, výpis `hotovo/` seznam toho, co už funguje.
 
@@ -60,14 +64,16 @@ A jednu větu navíc: **paměť projektu jsou tyhle soubory, ne chat.** Když se
 
 Vytvoř **dva** příkazy, protože ověřování má dvě rychlosti. Pravidla drží skill "pravidla-testu".
 
-- **`npm run check`** na průběžné psaní: kontrola typů a rychlé testy, bez prohlížeče. Musí být otázkou sekund, jinak se přestane pouštět.
-- **`npm run verify`** na konec řezu: kontrola typů, testy oprávnění, integrační testy a testy v prohlížeči.
+- **`check`** na průběžné psaní: kontrola typů a rychlé testy, bez prohlížeče. Musí být otázkou sekund, jinak se přestane pouštět.
+- **`verify`** na konec řezu: kontrola typů, testy oprávnění, integrační testy a testy v prohlížeči (u aplikace bez prohlížeče testy celé cesty tam, kde běží, viz skill "pravidla-testu").
 
-`verify` skládej z menších skriptů, jeden na vrstvu. Když je něco červené, dá se pak pustit jen ta vrstva, místo celé sady dokola.
+V projektu na Node jsou to `npm run check` a `npm run verify`. Jinde je udělej tak, jak se ve stacku příkazy běžně spouštějí, a přesné znění zapiš do sekce Stack v `AGENTS.md`. Ostatní skilly je odtud čtou.
+
+`verify` skládej z menších příkazů, jeden na vrstvu. Když je něco červené, dá se pak pustit jen ta vrstva, místo celé sady dokola.
 
 Uživateli to vysvětli jednou větou: **kratší běží pořád, delší rozhoduje o tom, jestli je hotovo.**
 
-Doinstaluj prohlížeče pro testování (`npx playwright install`). Samotný balíček nestačí a chybová hláška, která z toho jinak vypadne, je pro uživatele nesrozumitelná.
+U webové aplikace doinstaluj prohlížeče pro testování (u Playwrightu `npx playwright install`). Samotný balíček nestačí a chybová hláška, která z toho jinak vypadne, je pro uživatele nesrozumitelná.
 
 **Testy oprávnění potřebují skutečnou databázi, a nikdy ne tu ostrou.**
 
@@ -79,50 +85,23 @@ Ostrý projekt zakládej až v `/vibe:pust-to-ven`. Teď stačí vývojový.
 
 Tenhle krok se **nedá přeskočit ani odložit na uživatele**. Skill pokračuje, až když se projekt k databázi připojí. Zbytek zakládání (základ, ověřování, pojistky) může být hotový dřív, ale skill nekončí bez databáze.
 
-Nejdřív zjisti, jestli je `supabase` CLI přihlášené (`supabase projects list`). Pak vyber cestu:
+**Když databáze běží na Supabase, přečti si soubor `supabase.md` ve složce tohohle skillu a postupuj podle něj.**
 
-**Cesta přes CLI, když je přihlášené.** Uživatel nic nekopíruje. Vypiš mu existující projekty a zeptej se, jestli má některý vývojový, který smí rozbít, nebo jestli založit nový (`supabase projects create <nazev>-dev --region eu-central-1`). Pak `supabase link` na vybraný projekt a klíče vezmi z `supabase projects api-keys`. Uživateli řekni jen, že jsi projekt propojil a kde ho uvidí v konzoli. Nastavení Security z formuláře níž u projektu založeného z CLI nejde nastavit, proto každá tabulka dostane ochranu i zpřístupnění v migraci, viz skill "stack".
+U jiné databáze postupuj podle dokumentace jejího poskytovatele a dodrž totéž co u Supabase:
 
-**Cesta přes prohlížeč, když CLI přihlášené není.** Projekt zakládá uživatel, ty ho navádíš. Řekni mu, ať otevře supabase.com, klikne na New project, a **počkej, až řekne, že formulář vidí.** Pak jdi shora dolů, **jedna sekce na jednu zprávu**, nech si popsat, co na obrazovce je. U každé volby řekni důsledek, ne název:
+- Vývojová databáze je oddělená od budoucí ostré: jiná adresa, jiné klíče.
+- Výchozí stav je zákaz přístupu, kde to poskytovatel umí nastavit. Kde ne, chrání data kód serveru a hlídají to testy oprávnění.
+- Projekt je s databází propojený tak, aby šly pouštět migrace.
 
-- **GitHub (optional)** - přeskočit. Připojení nechá Supabase samo nasazovat změny schématu z repozitáře. Migrace pouštíme z ruky a nechceš, aby ti do databáze něco sahalo dřív, než víš, co v ní je.
-- **Project name** - s příponou `-dev`. Za měsíc bude vedle `-prod` a musí být na první pohled poznat, do kterého se dívá.
-- **Database password** - hned Copy a uložit do správce hesel. Aplikace ho potřebovat nebude, ta jede na klíčích, ale bez něj se k databázi nedostane napřímo a znovu se nezobrazí.
-- **Region** - nejbližší, z Česka Frankfurt (`eu-central-1`). Později se nedá změnit.
-- **Postgres Type** v Advanced configuration - nechat `Postgres`. OrioleDB je alpha.
+Když projekt zakládá uživatel v prohlížeči, naváděj ho po jedné sekci formuláře na jednu zprávu a u každé volby řekni důsledek, ne název.
 
-**Sekce Security je jediné místo formuláře, kde se rozhoduje o bezpečnosti, a dvě ze tří voleb jsou výchozí opačně, než je chceš.** Nehádej jejich stav, nech si přečíst, co je zaškrtnuté:
+### Společné pro každou databázi
 
-- ☑️ **Enable Data API** - nechat zaškrtnuté. Bez toho se aplikace k datům nedostane, `supabase-js` jede přes něj.
-- ⬜️ **Automatically expose new tables** - **odškrtnout**, výchozí je zaškrtnuté. Supabase to sám v popisku doporučuje vypnout. Zaškrtnuté znamená, že nová tabulka je dosažitelná zvenku, jakmile vznikne, aniž by o tom kdokoli rozhodl. Odškrtnuté znamená, že se přístup musí ke každé tabulce napsat výslovně, a když se na to zapomene, aplikace spadne na `permission denied for table` i s návodem, co dopsat. To je ta chyba, kterou chceš. Opačně se nestane nic viditelného a data jsou venku.
-- ☑️ **Enable automatic RLS** - **zaškrtnout**, výchozí je odškrtnuté. Založí pravidlo, které u každé nové tabulky zapne "dokud někdo výslovně neřekne, kdo sem smí, nesmí sem nikdo". Tohle je nejčastější díra ve vibecodovaných aplikacích: přibude funkce, přibude tabulka, pravidlo se k ní nedoplní. Tabulky naklikané v konzoli ochranu dostanou samy, ale my je zakládáme migracemi, a na ty to bez tohohle neplatí.
+Soubor s klíči (u Next.js `.env.local`) patří do `.gitignore`. **Servisní klíč obchází všechna pravidla přístupu.** Je jen na přípravu a úklid testovacích dat, nikdy nesmí skončit v kódu, který běží v prohlížeči, ani na localhostu, a nikam ho neposílej.
 
-Uživateli to shrň jednou větou: jsou to dvě nezávislé pojistky a obě selhávají nahlas. Třetí jsou testy oprávnění v projektu.
-
-Supabase výchozí hodnotu u expose postupně obrací, u nových projektů od dubna 2026 a u všech do konce října 2026. Když ji uživatel najde odškrtnutou rovnou, jen to potvrď a jdi dál.
-
-### Vezmi si klíče
-
-U cesty přes CLI si klíče vezmi sám a `.env.local` vyrob sám. U cesty přes prohlížeč počkej, až projekt naběhne, a proveď uživatele na **Project Settings → API keys**. Vyrob `.env.local` zkopírováním `.env.example` a dej do něj tři věci:
-
-- Project URL → `NEXT_PUBLIC_SUPABASE_URL`
-- publishable klíč (dřív `anon`) → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- secret klíč (dřív `service_role`, schovaný pod Reveal) → `SUPABASE_SERVICE_ROLE_KEY`
-
-Nové projekty ukazují `sb_publishable_...` a `sb_secret_...`; starší klíče `anon` a `service_role` Supabase vyřazuje do konce roku 2026. Jsou to tytéž dvě role. Klíč `sb_secret_...` vzatý z CLI u některých projektů vrací `Invalid API key`; když se to stane, vezmi `service_role` a ověř testem, který klíč funguje.
-
-`.env.local` patří do `.gitignore`. **Secret klíč obchází všechna pravidla přístupu.** Je jen na přípravu a úklid testovacích dat, nikdy nesmí skončit v kódu, který běží v prohlížeči, ani na localhostu, a nikam ho neposílej.
-
-Na konci spusť test spojení (`npm run test:permissions`) a vypiš výstup. Musí v něm být `passed`. Test, který se bez klíčů **přeskočí**, je v pořádku jako ochrana pro později, ale `skipped` není důkaz spojení. Dokud test nevypíše `passed`, databáze není napojená a skill neskončil.
-
-U cesty přes prohlížeč ještě projekt propoj: řekni uživateli, ať napíše `! supabase login` a dokončí přihlášení v prohlížeči, pak udělej `supabase link`. Bez propojení nejdou pouštět migrace a první řez s tabulkou se zasekne.
+Na konci spusť test spojení a vypiš výstup. Musí v něm být `passed`. Test, který se bez klíčů **přeskočí**, je v pořádku jako ochrana pro později, ale `skipped` není důkaz spojení. Dokud test nevypíše `passed`, databáze není napojená a skill neskončil.
 
 Uživateli řekni v důsledcích: kde se testuje, proč to není tam, kde budou skutečná data, a co ho to stojí.
-
-Dvě věci, které mu řekni rovnou, ať ho nepřekvapí:
-
-- **Zdarma jsou dva aktivní projekty**, a to dohromady, ne na organizaci. Dvojice vývojový a ostrý se do toho vejde přesně, ale na další aplikaci už místo nezbude.
-- **Projekt zdarma se po týdnu bez provozu uspí.** Když se po delší pauze vrátí a testy padají na spojení, není to chyba v kódu, jen se projekt musí probudit v konzoli. Uspaný projekt se do limitu nepočítá.
 
 Na prázdném projektu bude sada prázdná. To je v pořádku, naplní se s prvním řezem. Ale příkaz musí existovat a projít od první minuty.
 
@@ -132,7 +111,7 @@ Nejdražší chyba není špatný kód, ale ztracená práce. Agent umí jedním
 
 **Verzování od první minuty.** Když projekt není v gitu, založ ho a udělej první commit. Bez toho nemá smysl nic dalšího. Uživateli řekni jednou větou, co to pro něj znamená: **po každém hotovém kusu se dá kdykoli vrátit zpátky.**
 
-**Zakázané příkazy.** Do nastavení oprávnění projektu přidej mezi zakázané ty, které nevratně mažou práci: tvrdý návrat na starší stav, mazání nesledovaných souborů, násilné přepsání vzdálené větve, mazání větví a reset propojené databáze (`supabase db reset --linked`). Nejde o hook ani o skript, jen o seznam v nastavení. Když agent takový příkaz potřebuje, řekne si o to a rozhodne člověk. Když zápis do nastavení neprojde, zkus to znovu později v tomhle sezení; uživateli řekni, co se zapisuje a proč, a nech to na sobě, ne na něm.
+**Zakázané příkazy.** Do nastavení oprávnění projektu přidej mezi zakázané ty, které nevratně mažou práci: tvrdý návrat na starší stav, mazání nesledovaných souborů, násilné přepsání vzdálené větve, mazání větví a reset propojené databáze (u Supabase `supabase db reset --linked`, u jiné databáze její obdoba). Nejde o hook ani o skript, jen o seznam v nastavení. Když agent takový příkaz potřebuje, řekne si o to a rozhodne člověk. Když zápis do nastavení neprojde, zkus to znovu později v tomhle sezení; uživateli řekni, co se zapisuje a proč, a nech to na sobě, ne na něm.
 
 **Checkpointy jako návyk.** Po každém hotovém a ověřeném řezu commit. Ne po každé změně, ale po každém kusu, který funguje. Vysvětli uživateli rozdíl: **vracení v aplikaci není záloha.** Vrací jen změny souborů, které dělal agent přes editaci, ne to, co se stalo příkazem nebo v databázi.
 
@@ -142,8 +121,9 @@ Navíc: zmapuj, co v ní je, a **hned spusť skill "kdo-vidi-co"**. U aplikace, 
 
 ## Hotovo je, když
 
-- `npm run verify` proběhne a skončí zeleně a test spojení s databází v něm vypsal `passed`, ne `skipped`.
-- Projekt je propojený přes `supabase link`, aby šly pouštět migrace.
+- `verify` proběhne a skončí zeleně a test spojení s databází v něm vypsal `passed`, ne `skipped`.
+- Projekt je propojený s vývojovou databází tak, aby šly pouštět migrace (u Supabase `supabase link`).
+- Sekce Stack v `AGENTS.md` říká, na čem projekt stojí, a obsahuje přesné znění `check` a `verify`, u webové aplikace i `screenshot`.
 - `KONTEXT.md` obsahuje pojmy z rozhovoru, ne obecné fráze. `PRODUKT.md` má seznam věcí z rozhovoru a v `.ukoly/` je na každou z nich nápad.
 - Uživatel ví, kde má seznam úkolů a jak se spustí aplikace.
 - Uživatel ví, k čemu jsou `PRODUKT.md`, `KONTEXT.md`, `rozhodnuti/` a `AGENTS.md`, a slyšel, že paměť projektu jsou soubory, ne chat.

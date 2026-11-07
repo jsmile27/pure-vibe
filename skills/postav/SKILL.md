@@ -20,9 +20,9 @@ Než začneš, přečti `KONTEXT.md` kvůli slovníku, `rozhodnuti/` kvůli tomu
 
 5. **Test napřed a viz ho spadnout.** Test, který jsi neviděl spadnout, nic neověřuje.
 
-6. **Průběžně pouštěj `npm run check`.** Kontrola typů a rychlé testy, otázka sekund. Celou sadu včetně prohlížeče až na konci, ta se pouští jednou.
+6. **Průběžně pouštěj `check`.** Přesné znění příkazů je v sekci Stack v `AGENTS.md`. Kontrola typů a rychlé testy, otázka sekund. Celou sadu včetně prohlížeče až na konci, ta se pouští jednou.
 
-7. **Podívej se na to.** Spusť aplikaci a pusť `npm run screenshot -- <cesta>` na každou stránku, které ses dotkl. Udělá obrázek pro mobil i počítač a vypíše chyby z konzole a padlé požadavky. Obrázky si přečti. **Prázdná stránka, chyba v konzoli nebo rozsypaný obsah jsou nález, i když jsou testy zelené**, protože test ověří jen to, co jsi mu nadiktoval. Když stránka potřebuje přihlášení, dej skriptu stav přihlášení z testů (`--storage`), nepiš si vlastní skript. Server po sobě zase zhasni, jinak zůstane viset na portu a příští spuštění spadne na něčem, co s prací nesouvisí. Tohle není ověření, to je krok 8.
+7. **Podívej se na to.** Spusť aplikaci a pusť `screenshot` s cestou ke stránce na každou stránku, které ses dotkl. Udělá obrázek pro mobil i počítač a vypíše chyby z konzole a padlé požadavky. Obrázky si přečti. **Prázdná stránka, chyba v konzoli nebo rozsypaný obsah jsou nález, i když jsou testy zelené**, protože test ověří jen to, co jsi mu nadiktoval. Když stránka potřebuje přihlášení, dej skriptu stav přihlášení z testů (`--storage`), nepiš si vlastní skript. Server po sobě zase zhasni, jinak zůstane viset na portu a příští spuštění spadne na něčem, co s prací nesouvisí. Tohle není ověření, to je krok 8. U aplikace bez webového rozhraní se podívej tak, jak říká sekce Stack v `AGENTS.md`.
 
 8. **Ověř.** Zavolej skill "zkontroluj".
 
@@ -41,7 +41,7 @@ Tvrdá pojistka: **maily na skutečné adresy neposíláš a schránku uživatel
 
 ## Kdy je řez hotový
 
-Řez je hotový, když jsi **ukázal výstup příkazu `npm run verify`** a je zelený. Zelený `npm run check` to nenahrazuje, ten prohlížeč nespouští.
+Řez je hotový, když jsi **ukázal výstup příkazu `verify`** a je zelený. Zelený `check` to nenahrazuje, ten prohlížeč nespouští.
 
 Tvrzení "funguje to", "mělo by to fungovat" nebo "testy procházejí" není důkaz. Důkaz je vypsaný výstup.
 
@@ -53,7 +53,7 @@ Po hotovém řezu řekni, který je na řadě další, a že se pouští **v nov
 
 ## Když se to zadrhne
 
-Když se během stavby ukáže, že se řez nevejde do tohohle sezení, nebo že zadání nesedí s tím, co v aplikaci opravdu je, dodělej rozpracovaný krok, až `npm run check` projde, a zastav se. Nic nevracej. Do pole "Poznámky pro stavbu" v souboru řezu zapiš, co je hotové, co zbývá a co jsi zjistil, a řekni uživateli, že rozdělaná práce zatím není v checkpointu. Pak podle situace:
+Když se během stavby ukáže, že se řez nevejde do tohohle sezení, nebo že zadání nesedí s tím, co v aplikaci opravdu je, dodělej rozpracovaný krok, až `check` projde, a zastav se. Nic nevracej. Do pole "Poznámky pro stavbu" v souboru řezu zapiš, co je hotové, co zbývá a co jsi zjistil, a řekni uživateli, že rozdělaná práce zatím není v checkpointu. Pak podle situace:
 
 - **Chybí základ:** postupuj jako v kroku 2.
 - **Zadání nesedí v tom, jak se má věc chovat:** zeptej se přes skill "preklad-rozhodnuti" a odpověď doplň do zadání. Když se tím mění, co ta věc vůbec je, doporuč `/vibe:vyzpovidej`.

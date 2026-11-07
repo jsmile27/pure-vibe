@@ -15,7 +15,7 @@ Názvy testů piš anglicky, stejně jako kód. Dokumenty a rozhovor s uživatel
 
 ## Čtyři vrstvy
 
-Všechny běží pod jedním příkazem `npm run verify`.
+Všechny běží pod jedním příkazem `verify`.
 
 **1. Kontrola typů.** Zdarma a okamžitá. Nic k rozhodování.
 
@@ -25,17 +25,17 @@ Ke každé nové tabulce patří test oprávnění ve stejném řezu. Bez něj n
 
 **3. Integrační testy akcí.** Jedna akce, kterou appka umí ("vytvoř objednávku", "zruš rezervaci"), včetně skutečné databáze. Tady leží těžiště, protože je to rychlé a chytí to většinu chyb.
 
-**4. Testy v prohlížeči.** Jedna hlavní cesta na každou funkci, projitá tak, jak by ji prošel člověk. Chytají to, co ostatní vrstvy nevidí: rozbité tlačítko, nenačtenou stránku, formulář, co neodešle.
+**4. Testy v prohlížeči.** Jedna hlavní cesta na každou funkci, projitá tak, jak by ji prošel člověk. Chytají to, co ostatní vrstvy nevidí: rozbité tlačítko, nenačtenou stránku, formulář, co neodešle. U aplikace bez prohlížeče je tahle vrstva stejná cesta projitá tam, kde aplikace běží: v simulátoru telefonu, spuštěním z příkazové řádky. Pravidla pro prohlížeč níž pak převeď na to prostředí.
 
 **Jednotkové testy** piš jen tam, kde je pravidlová logika: ceny, slevy, výpočty, přechody stavů. Nikde jinde.
 
 ## Dvě rychlosti
 
-Kdyby se po každé změně pouštělo všechno včetně prohlížeče, čekání by bylo tak dlouhé, že by se ověřování začalo obcházet. Proto jsou příkazy dva.
+Kdyby se po každé změně pouštělo všechno včetně prohlížeče, čekání by bylo tak dlouhé, že by se ověřování začalo obcházet. Proto jsou příkazy dva. Jejich přesné znění je v sekci Stack v `AGENTS.md` projektu.
 
-**`npm run check`** je na průběžné psaní: kontrola typů a rychlé testy, tedy vrstvy 1 až 3 bez prohlížeče. Trvá sekundy a pouští se často.
+**`check`** je na průběžné psaní: kontrola typů a rychlé testy, tedy vrstvy 1 až 3 bez prohlížeče. Trvá sekundy a pouští se často.
 
-**`npm run verify`** je na konec řezu a před ukázáním komukoli: všechny čtyři vrstvy, prohlížeč včetně.
+**`verify`** je na konec řezu a před ukázáním komukoli: všechny čtyři vrstvy, prohlížeč včetně.
 
 Zelený `check` **není ověření**. Řez je hotový až po zeleném `verify`, a ten se dokládá vypsaným výstupem. Skill "zkontroluj" pouští vždycky `verify`, nikdy `check`.
 
@@ -72,7 +72,7 @@ Agenti tady dělají čtyři chyby pořád dokola:
 - **Nepřihlašuj se přes formulář v každém testu.** Přihlas se jednou a stav přihlášení znovu použij.
 - **Data připrav přes rozhraní, ne proklikáním.** Test má ověřovat jednu věc, ne dvacet kroků příprav.
 
-**Než napíšeš první test v projektu, přečti si soubor `priklady.md` ve složce tohohle skillu.** Jsou v něm konkrétní tvary všech tří vrstev, včetně toho, jak vypadají špatně, a pasti, na kterých se dá napsat test, co vypadá, že hlídá, a nehlídá nic.
+**Než napíšeš první test v projektu, přečti si soubor `priklady.md` ve složce tohohle skillu.** Příklady v něm jsou psané pro Next.js + Supabase (Vitest a Playwright), v jiném stacku převeď stejné tvary do jeho nástrojů. Jsou v něm konkrétní tvary všech tří vrstev, včetně toho, jak vypadají špatně, a pasti, na kterých se dá napsat test, co vypadá, že hlídá, a nehlídá nic.
 
 ## Antivzory
 

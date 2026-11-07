@@ -5,11 +5,11 @@ description: Ověř, že aplikace dělá to, co bylo v zadání, a dolož to vý
 
 Ověření dělá **jiný agent, než ten, co to psal.** Kdo práci napsal, ten ji nehodnotí: vidí, co chtěl napsat, ne co tam je.
 
-Tenhle skill pouští **plnou sadu**. Rychlá kontrola během psaní je `npm run check` a ověření nenahrazuje.
+Tenhle skill pouští **plnou sadu**. Rychlá kontrola během psaní je `check` a ověření nenahrazuje.
 
 ## Postup
 
-1. Spusť `npm run verify` a **vypiš skutečný výstup**, ne jeho shrnutí.
+1. Spusť `verify` podle sekce Stack v `AGENTS.md` a **vypiš skutečný výstup**, ne jeho shrnutí.
 
 2. Pošli subagenta s čistým kontextem. Dej mu jen dvě věci: **zadání nebo řez** a **výstup příkazu**. Ať odpoví na tři otázky:
    - Dělá to všechno, co v zadání stálo? Co chybí?

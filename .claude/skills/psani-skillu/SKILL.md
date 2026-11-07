@@ -70,6 +70,6 @@ Zákaz nech jen tam, kde je to tvrdá pojistka, a i tam k němu připoj, co se m
 
 Dokumenty a rozhovor s uživatelem česky. Kód, názvy testů, názvy souborů v kódu a názvy skriptů v projektu anglicky. Názvy skillů česky, bez diakritiky.
 
-Z toho plyne dvojice, která je záměrná: skill `/vibe:over` je česky, protože ho píše člověk, a spouští `npm run verify`, který je anglicky, protože je to kód.
+Z toho plyne dvojice, která je záměrná: skill `/vibe:over` je česky, protože ho píše člověk, a spouští `verify`, který je anglicky, protože je to kód.
 
 Nepoužívej dlouhou pomlčku.
