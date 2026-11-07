@@ -53,4 +53,12 @@ Po hotovém řezu řekni, který je na řadě další, a že se pouští **v nov
 
 ## Když se to zadrhne
 
+Když se během stavby ukáže, že se řez nevejde do tohohle sezení, nebo že zadání nesedí s tím, co v aplikaci opravdu je, dodělej rozpracovaný krok, až `npm run check` projde, a zastav se. Nic nevracej. Do pole "Poznámky pro stavbu" v souboru řezu zapiš, co je hotové, co zbývá a co jsi zjistil, a řekni uživateli, že rozdělaná práce zatím není v checkpointu. Pak podle situace:
+
+- **Chybí základ:** postupuj jako v kroku 2.
+- **Zadání nesedí v tom, jak se má věc chovat:** zeptej se přes skill "preklad-rozhodnuti" a odpověď doplň do zadání. Když se tím mění, co ta věc vůbec je, doporuč `/vibe:vyzpovidej`.
+- **Řez je jen moc velký:** doporuč dokončit ho v novém sezení dalším `/vibe:postav` na stejný řez.
+
+V tomhle sezení stav dál, jen když se domluvíte, že se pokračuje v tomhle řezu.
+
 Když třikrát po sobě opravuješ tu samou věc a nepomáhá to, přestaň hádat a řekni uživateli, ať spustí `/vibe:najdi-chybu`.

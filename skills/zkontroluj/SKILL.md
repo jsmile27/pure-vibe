@@ -16,9 +16,11 @@ Tenhle skill pouští **plnou sadu**. Rychlá kontrola během psaní je `npm run
    - Je tam něco navíc, co nikdo nechtěl?
    - Sedí sekce "Jak poznáme, že to funguje" se skutečnými testy, nebo jsou testy měkčí, než zadání slibovalo?
 
-3. Když je něco červené, **nepokračuj a neomlouvej to.** Oprav, spusť znovu.
+3. **Nálezy subagenta si ověř**, než podle nich jednáš: podívej se do kódu a testů, jestli opravdu platí. Co platí, oprav a vrať se ke kroku 1. Nález odmítni jen s důkazem, tedy výstupem testu nebo příkazu, a v závěrečném shrnutí ho zmiň jednou větou o tom, co z toho pro uživatele plyne. Když subagent najde něco navíc, co v zadání není, zeptej se uživatele, jestli to odstranit, nebo doplnit do zadání. Hotovo, když je každý nález opravený, vyvrácený důkazem, nebo rozhodnutý uživatelem.
 
-4. Když je všechno zelené, napiš tři odstavce: co se ověřilo, co se **neověřilo** a co si má uživatel proklikat sám.
+4. Když je něco červené, **nepokračuj a neomlouvej to.** Oprav, spusť znovu.
+
+5. Když je všechno zelené, napiš tři odstavce: co se ověřilo, co se **neověřilo** a co si má uživatel proklikat sám.
 
 ## Přiznej, kde je hranice ověření
 

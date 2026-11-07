@@ -47,6 +47,8 @@ Věci, které jsme vědomě odložili. Buď konkrétní, ať se to nevrátí zad
 Cokoli dalšího.
 ```
 
+Než cokoli ukážeš uživateli, přečti si zadání očima někoho, kdo u rozhovoru nebyl. Hledej rozpory mezi sekcemi, body, které jdou pochopit dvojím způsobem, a nedopsaná místa typu "doplníme později" nebo "nějak". Co jde rozhodnout z rozhovoru, oprav sám. Na zbytek se zeptej přes skill "preklad-rozhodnuti", jednou otázkou na každou nejasnost, všechny v jednom kole. Když jich je víc než čtyři nebo uživatel neumí rozhodnout, zpovídání nebylo dotažené: řekni to a doporuč `/vibe:vyzpovidej`. Hotovo, když v textu nezbyl rozpor, dvojznačnost ani nedopsané místo.
+
 Zadání ulož podle nastavení projektu. V projektu: složka `.ukoly/<slug>/` a v ní `zadani.md`. Když k té věci existuje `.ukoly/napad-<slug>.md`, smaž ho, zadání ho nahrazuje. Na GitHubu: jedno issue.
 
 Než ho uložíš, ukaž uživateli sekci **Jak poznáme, že to funguje** a nech si ji potvrdit. To je jediná část, kterou musí odsouhlasit, protože z ní vzniknou testy.
